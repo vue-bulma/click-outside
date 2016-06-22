@@ -3,6 +3,7 @@ const Vue = require('vue')
 const { on, off } = Vue.util
 
 Vue.directive('click-outside', {
+  acceptStatement: true,
   priority: 700,
   bind () {
     on(document, 'click', this.handler, true)
