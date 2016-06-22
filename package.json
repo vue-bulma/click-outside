@@ -1,0 +1,11 @@
+{
+  "name": "vue-click-outside",
+  "version": "0.1.0",
+  "description": "ClickOutside directive for Vue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fangdun Cai <cfddream@gmail.com>",
+  "license": "MIT"
+}
