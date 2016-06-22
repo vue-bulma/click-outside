@@ -1,17 +1,23 @@
-import Vue from 'vue'
+const Vue = require('vue')
 
 const { on, off } = Vue.util
 
 Vue.directive('click-outside', {
-	bind () {
-		document.addEventListener('click', this.handle, true)
-	},
-	update (onClickOutside) {
-		this.handle = (e) => {
-			if (!this.el.contains(e.target)) onClickOutside(e)
-		}
-	},
-	unbind () {
-		document.addEventListener('click', this.handle, true)
-	}
+  priority: 700,
+  bind () {
+    on(document, 'click', this.handler, true)
+  },
+  update (onClickOutside) {
+    if (!this.descriptor.raw) {
+      onClickOutsider = function() {}
+    }
+    this.unbind()
+    this.handler = (e) => {
+      if (!this.el.contains(e.target)) onClickOutside(e)
+    }
+    this.bind()
+  },
+  unbind () {
+    off(document, 'click', this.handler, true)
+  }
 })
