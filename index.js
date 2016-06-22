@@ -9,7 +9,7 @@ Vue.directive('click-outside', {
   },
   update (onClickOutside) {
     if (!this.descriptor.raw) {
-      onClickOutsider = function() {}
+      onClickOutside = () => {}
     }
     this.unbind()
     this.handler = (e) => {
