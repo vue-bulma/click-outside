@@ -13,7 +13,7 @@ Vue.directive('click-outside', {
     this.unbind()
     this.handler = function (e) {
       if (!this.el.contains(e.target)) onClickOutside(e)
-    }
+    }.bind(this)
     this.bind()
   },
   unbind: function () {
