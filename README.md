@@ -5,7 +5,7 @@ Vue click outside directive.
 ## Installation
 
 ```
-$ npm install vuet-click-outside
+$ npm install vue-click-outside
 ```
 
 ## Example
