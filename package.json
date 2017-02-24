@@ -1,6 +1,6 @@
 {
   "name": "vue-click-outside",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ClickOutside directive for Vue",
   "main": "index.js",
   "repository": "vue-bulma/click-outside",
