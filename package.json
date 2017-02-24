@@ -1,9 +1,10 @@
 {
   "name": "vue-click-outside",
-  "version": "0.4.3",
+  "version": "1.0.0",
   "description": "ClickOutside directive for Vue",
   "main": "index.js",
   "repository": "vue-bulma/click-outside",
   "author": "Fangdun Cai <cfddream@gmail.com>",
+  "maintainers": "Luventa <luventa@outlook.com>",
   "license": "MIT"
 }

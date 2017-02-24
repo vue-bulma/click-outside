@@ -12,21 +12,25 @@ $ npm install vue-click-outside
 
 ```vue
 <template>
-  <div v-click-outside="hide"></div>
+  <div>
+    <div v-click-outside="hide" @click="toggle">Toggle</div>
+    <div v-show="opened">Popup item</div>
+  </div>
 </template>
 
 <script>
+import ClickOutside from 'vue-click-outside'
+
 export default {
-  props: {
-    opened: {
-      type: Boolean,
-      default: false
+  data () {
+    return {
+      opened: false
     }
   },
 
   methods: {
     toggle () {
-      this.opened = !this.opened
+      this.opened = true
     },
 
     hide () {
@@ -34,10 +38,14 @@ export default {
     }
   },
 
-  watch: {
-    opened () {
-      this.dropdown.classList.toggle('open')
-    }
+  mounted () {
+    // prevent click outside event with popupItem.
+    this.popupItem = this.$el
+  },
+
+  // do not forget this section
+  directives: {
+    ClickOutside
   }
 }
 </script>
