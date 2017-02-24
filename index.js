@@ -1,17 +1,25 @@
-const validate = (binding) => {
+const validate = binding => {
   if (typeof binding.value !== 'function') {
-    const compName = vNode.context.name
-    let warn = `[Vue-click-outside:] provided expression '${binding.expression}' is not a function.`
-
-    if (compName) { 
-      warn += ` Found in component '${compName}'` 
-    }
-    
+    let warn = `[Vue-click-outside:] provided expression '${binding.expression}' is not a function.` 
     console.warn(warn)
     return false
   }
 
   return true
+}
+
+const isPopup = (popupItem, elements) => {
+  if (!popupItem) 
+    return false
+
+  for (let element of elements) {
+    if (popupItem.contains(element)) 
+      return true
+    if (element.contains(popupItem))
+      return false
+  }
+
+  return false
 }
 
 export default {
@@ -23,8 +31,10 @@ export default {
       if (!vNode.context) return
 
       // some components may have related popup item, on which we shall prevent the click outside event handler.
-      let popupItem = vNode.context.popupItem
-      if (el.contains(e.target) || (popupItem && popupItem.contains(e.target))) return
+      let elements = e.composedPath()
+      elements.unshift(e.target)    
+      
+      if (el.contains(e.target) || isPopup(vNode.context.popupItem, elements)) return
 
       binding.value(e)
     }
