@@ -8,7 +8,7 @@ function validate(binding) {
 }
 
 function isPopup(popupItem, elements) {
-  if (!popupItem) 
+  if (!popupItem || !elements) 
     return false
 
   for (var i = 0, len = elements.length; i < len; i++) {
@@ -30,8 +30,8 @@ exports = module.exports = {
       if (!vNode.context) return
 
       // some components may have related popup item, on which we shall prevent the click outside event handler.
-      var elements = e.composedPath()
-      elements.unshift(e.target)    
+      var elements = e.path || (e.composedPath && e.composedPath())
+      elements && elements.length > 0 && elements.unshift(e.target)
       
       if (el.contains(e.target) || isPopup(vNode.context.popupItem, elements)) return
 
