@@ -20,7 +20,7 @@ function isPopup(popupItem, elements) {
         return false
       }
     } catch(e) {
-      return false;
+      return false
     }
   }
 
