@@ -8,14 +8,20 @@ function validate(binding) {
 }
 
 function isPopup(popupItem, elements) {
-  if (!popupItem || !elements) 
+  if (!popupItem || !elements)
     return false
 
   for (var i = 0, len = elements.length; i < len; i++) {
-    if (popupItem.contains(elements[i])) 
-      return true
-    if (elements[i].contains(popupItem))
-      return false
+    try {
+      if (popupItem.contains(elements[i])) {
+        return true
+      }
+      if (elements[i].contains(popupItem)) {
+        return false
+      }
+    } catch(e) {
+      return false;
+    }
   }
 
   return false
