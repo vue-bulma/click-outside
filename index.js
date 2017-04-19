@@ -35,22 +35,24 @@ exports = module.exports = {
       
       if (el.contains(e.target) || isPopup(vNode.context.popupItem, elements)) return
 
-      binding.value(e)
+      el.__vueClickOutside__.callback(e)
     }
 
     // add Event Listeners
-    el.__vueClickOutside__ = handler
+    el.__vueClickOutside__ = {
+      handler: handler,
+      callback: binding.value
+    }
     document.addEventListener('click', handler)
   },
 
   update: function (el, binding) {
-    if (validate(binding)) el.__vueClickOutside__ = binding.value
+    if (validate(binding)) el.__vueClickOutside__.callback = binding.value
   },
   
   unbind: function (el, binding) {
     // Remove Event Listeners
-    document.removeEventListener('click', el.__vueClickOutside__)
+    document.removeEventListener('click', el.__vueClickOutside__.handler)
     delete el.__vueClickOutside__
-
   }
 }
