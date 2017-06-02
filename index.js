@@ -49,16 +49,16 @@ exports = module.exports = {
       handler: handler,
       callback: binding.value
     }
-    document.addEventListener('click', handler)
+    !vNode.componentInstance.$isServer && document.addEventListener('click', handler)
   },
 
   update: function (el, binding) {
     if (validate(binding)) el.__vueClickOutside__.callback = binding.value
   },
   
-  unbind: function (el, binding) {
+  unbind: function (el, binding, vNode) {
     // Remove Event Listeners
-    document.removeEventListener('click', el.__vueClickOutside__.handler)
+    !vNode.componentInstance.$isServer && document.removeEventListener('click', el.__vueClickOutside__.handler)
     delete el.__vueClickOutside__
   }
 }
