@@ -27,6 +27,10 @@ function isPopup(popupItem, elements) {
   return false
 }
 
+function isServer(vNode) {
+  return typeof vNode.componentInstance !== 'undefined' && vNode.componentInstance.$isServer
+}
+
 exports = module.exports = {
   bind: function (el, binding, vNode) {
     if (!validate(binding)) return
@@ -49,7 +53,7 @@ exports = module.exports = {
       handler: handler,
       callback: binding.value
     }
-    !vNode.componentInstance.$isServer && document.addEventListener('click', handler)
+    !isServer(vNode) && document.addEventListener('click', handler)
   },
 
   update: function (el, binding) {
@@ -58,7 +62,7 @@ exports = module.exports = {
   
   unbind: function (el, binding, vNode) {
     // Remove Event Listeners
-    !vNode.componentInstance.$isServer && document.removeEventListener('click', el.__vueClickOutside__.handler)
+    !isServer(vNode) && document.removeEventListener('click', el.__vueClickOutside__.handler)
     delete el.__vueClickOutside__
   }
 }
