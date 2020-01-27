@@ -62,7 +62,7 @@ exports = module.exports = {
   
   unbind: function (el, binding, vNode) {
     // Remove Event Listeners
-    !isServer(vNode) && document.removeEventListener('click', el.__vueClickOutside__.handler)
+    !isServer(vNode) && el.__vueClickOutside__ && document.removeEventListener('click', el.__vueClickOutside__.handler)
     delete el.__vueClickOutside__
   }
 }
