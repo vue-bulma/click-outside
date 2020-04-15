@@ -42,7 +42,7 @@ exports = module.exports = {
       // some components may have related popup item, on which we shall prevent the click outside event handler.
       var elements = e.path || (e.composedPath && e.composedPath())
       elements && elements.length > 0 && elements.unshift(e.target)
-      
+
       if (el.contains(e.target) || isPopup(vNode.context.popupItem, elements)) return
 
       el.__vueClickOutside__.callback(e)
@@ -60,7 +60,7 @@ exports = module.exports = {
   update: function (el, binding) {
     if (validate(binding)) el.__vueClickOutside__.callback = binding.value
   },
-  
+
   unbind: function (el, binding, vNode) {
     // Remove Event Listeners
     const clickHandler = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click';
