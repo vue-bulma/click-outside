@@ -14,7 +14,7 @@ $ npm install vue-click-outside
 <template>
   <div>
     <div v-click-outside="hide" @click="toggle">Toggle</div>
-    <div v-show="opened">Popup item</div>
+    <div v-show="opened" ref="mypopup">Popup item</div>
   </div>
 </template>
 
@@ -40,7 +40,7 @@ export default {
 
   mounted () {
     // prevent click outside event with popupItem.
-    this.popupItem = this.$el
+    this.popupItem = this.$refs.mypopup
   },
 
   // do not forget this section
