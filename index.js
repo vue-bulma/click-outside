@@ -31,7 +31,7 @@ function isServer(vNode) {
   return typeof vNode.componentInstance !== 'undefined' && vNode.componentInstance.$isServer
 }
 
-exports = module.exports = {
+export default {
   bind: function (el, binding, vNode) {
     if (!validate(binding)) return
 
