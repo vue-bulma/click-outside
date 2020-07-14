@@ -44,6 +44,16 @@ exports = module.exports = {
       elements && elements.length > 0 && elements.unshift(e.target)
 
       if (el.contains(e.target) || isPopup(vNode.context.popupItem, elements)) return
+      
+      // except elements
+      if (vNode.context.exceptElements.length) {
+          const exceptEls = document.querySelectorAll(vNode.context.exceptElements.join(', '))
+
+          for (let index = 0; index < exceptEls.length; index++) {
+              const element = exceptEls[index];
+              if (element.contains(e.target) || isPopup(element, elements)) return
+          }
+      }
 
       el.__vueClickOutside__.callback(e)
     }
