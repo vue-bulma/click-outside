@@ -41,6 +41,7 @@ export default {
   mounted () {
     // prevent click outside event with popupItem.
     this.popupItem = this.$el
+    this.exceptElements = ['.mx-datepicker-main', '.another-modal']
   },
 
   // do not forget this section
