@@ -43,7 +43,7 @@ exports = module.exports = {
       var elements = e.path || (e.composedPath && e.composedPath())
       elements && elements.length > 0 && elements.unshift(e.target)
 
-      if (el.contains(e.target) || isPopup(vNode.context.popupItem, elements)) return
+      if (el.contains(e.target) || elements.indexOf(el) !== -1 || isPopup(vNode.context.popupItem, elements)) return
 
       el.__vueClickOutside__.callback(e)
     }
