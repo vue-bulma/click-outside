@@ -19,7 +19,7 @@ function isPopup(popupItem, elements) {
       if (elements[i].contains(popupItem)) {
         return false
       }
-    } catch(e) {
+    } catch (e) {
       return false
     }
   }
@@ -45,13 +45,14 @@ exports = module.exports = {
 
       if (el.contains(e.target) || isPopup(vNode.context.popupItem, elements)) return
 
-      el.__vueClickOutside__.callback(e)
+      el.__vueClickOutside__.callback(e, el.__vueClickOutside__.arg)
     }
 
     // add Event Listeners
     el.__vueClickOutside__ = {
       handler: handler,
-      callback: binding.value
+      callback: binding.value,
+      arg: binding.arg
     }
     const clickHandler = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click';
     !isServer(vNode) && document.addEventListener(clickHandler, handler)
